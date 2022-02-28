@@ -53,9 +53,7 @@ function addNote(id, title = "", text = "") {
 	const main = document.getElementById("main");
 	const textArea = document.getElementById("textarea");
 
-	setTimeout(() => {
-		if (text === "") noteTitleInput.focus();
-	}, 500);
+	if (text === "") noteTitleInput.focus();
 
 	noteTitleInput.value = title;
 	textArea.value = text;
