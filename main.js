@@ -77,6 +77,7 @@ function addNote(id, title = "", text = "") {
 	});
 
 	editBtn.addEventListener("click", () => {
+		console.log(titleVal);
 		if (title === "") return;
 		main.classList.toggle("hidden");
 		textArea.classList.toggle("hidden");
@@ -123,6 +124,7 @@ function addNote(id, title = "", text = "") {
 			reverseTextField(noteTitleInput, noteTitle, main, textArea);
 		}
 		displayNotesList();
+		sideMenu.classList.add("side-menu--active");
 	});
 }
 
