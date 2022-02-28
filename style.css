@@ -225,10 +225,11 @@ body {
 
 .note-textfield .main,
 .note-textfield textarea {
-	height: 100%;
+	height: 90%;
 	width: 100%;
 	color: white;
 	font-family: Roboto, sans-serif;
+	overflow-y: scroll;
 }
 
 .note-textfield textarea {
@@ -238,6 +239,14 @@ body {
 	border: none;
 	outline: none;
 	font-size: 1.125rem;
+}
+
+.note-textfield .main {
+	line-height: 1.4;
+}
+
+.note-textfield .main a {
+	color: var(--color-accent);
 }
 
 /* ======UTILITY======== */
@@ -287,6 +296,11 @@ body {
 	.side-menu.side-menu--active {
 		left: 0;
 	}
+
+	.note-textfield {
+		padding: 1.875rem 2rem 4rem;
+		height: calc(100% - 5rem);
+	}
 }
 
 @media screen and (max-width: 31.25em) {
@@ -320,7 +334,7 @@ body {
 	}
 
 	.note-textfield {
-		padding: 2rem var(--inline-p);
+		padding-inline: var(--inline-p);
 	}
 
 	.note-title-sec {

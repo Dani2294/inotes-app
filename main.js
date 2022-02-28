@@ -84,7 +84,6 @@ function addNote(id, title = "", text = "") {
 
 	// Toggle between input and plain text for editing the values
 	editBtn.addEventListener("click", () => {
-		console.log(titleVal);
 		if (title === "") return;
 		main.classList.toggle("hidden");
 		textArea.classList.toggle("hidden");
