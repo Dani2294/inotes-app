@@ -5,12 +5,6 @@
 	margin: 0;
 	padding: 0;
 }
-html,
-body {
-	height: 100vh;
-	overflow: hidden;
-	font-family: Roboto, sans-serif;
-}
 
 :root {
 	--color-gray1: #333;
@@ -21,6 +15,15 @@ body {
 
 	--radius: 6px;
 	--inline-p: 1.25rem;
+
+	--app-height: 100%;
+}
+
+html,
+body {
+	height: 100vh;
+	overflow: hidden;
+	font-family: Roboto, sans-serif;
 }
 
 .wrapper {
@@ -70,7 +73,7 @@ body {
 	height: 100%;
 	padding-top: 2.7rem;
 	background-color: var(--color-dark-gray);
-	transition: all 0.4s ease-in;
+	transition: all 0.3s ease-in;
 }
 
 .notes-manipulation {
@@ -82,7 +85,6 @@ body {
 	display: block;
 	width: 100%;
 	padding: 1rem 0.625rem;
-	margin-bottom: 1.25rem;
 	border: none;
 	border-radius: var(--radius);
 	color: var(--color-gray1);
@@ -103,6 +105,7 @@ body {
 	display: block;
 	width: 100%;
 	padding: 0.875rem 1.125rem;
+	margin-bottom: 1.25rem;
 }
 
 .icon-btn {
@@ -283,10 +286,6 @@ body {
 	.notes-list {
 		overflow-y: scroll;
 	}
-
-	.note-title-sec {
-		margin-bottom: 1.5rem;
-	}
 }
 
 @media screen and (max-width: 31.25em) {
@@ -321,6 +320,10 @@ body {
 
 	.note-textfield {
 		padding: 2rem var(--inline-p);
+	}
+
+	.note-title-sec {
+		margin-bottom: 1.5rem;
 	}
 
 	.side-menu-toggler {

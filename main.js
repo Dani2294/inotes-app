@@ -8,6 +8,7 @@ const sideMenu = document.getElementById("side-menu");
 
 let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
+appHeight();
 displayNotesList();
 
 // Add Note
@@ -52,7 +53,9 @@ function addNote(id, title = "", text = "") {
 	const main = document.getElementById("main");
 	const textArea = document.getElementById("textarea");
 
-	if (text === "") noteTitleInput.focus();
+	setTimeout(() => {
+		if (text === "") noteTitleInput.focus();
+	}, 500);
 
 	noteTitleInput.value = title;
 	textArea.value = text;
@@ -74,6 +77,7 @@ function addNote(id, title = "", text = "") {
 	});
 
 	editBtn.addEventListener("click", () => {
+		if (title === "") return;
 		main.classList.toggle("hidden");
 		textArea.classList.toggle("hidden");
 
@@ -157,7 +161,7 @@ function displayNotesList() {
 	notesList.innerHTML = "";
 
 	if (notes.length < 1) {
-		notesList.innerHTML = `<p class="notes-list__item" >No notes to show yet...</p>`;
+		notesList.innerHTML = `<p class="notes-list__item" >No notes to show...</p>`;
 		return;
 	}
 	/* 
@@ -171,6 +175,7 @@ function displayNotesList() {
 
 	notes.forEach((note) => {
 		const MAX_TEXT_LENGTH = 60;
+		//const date = note.updated.toLocaleString();
 		const li = document.createElement("li");
 		li.className = "notes-list__item";
 
@@ -180,7 +185,6 @@ function displayNotesList() {
 							0,
 							MAX_TEXT_LENGTH
 						)}${note.text.length > MAX_TEXT_LENGTH ? "..." : ""}</p>
-            <p class="notes-list__item__date">${note.updated.toLocaleString()}</p>
         `;
 
 		li.addEventListener("click", () => {
@@ -235,6 +239,13 @@ searchInput.addEventListener("input", (e) => {
 sideMenuToggler.addEventListener("click", () => {
 	sideMenu.classList.toggle("side-menu--active");
 });
+
+// Fixing 100vh issue on mobile
+function appHeight() {
+	const doc = document.documentElement;
+	doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+}
+window.addEventListener("resize", appHeight);
 
 // Update Locale Storage
 function updateLS() {
