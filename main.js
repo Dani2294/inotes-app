@@ -6,12 +6,13 @@ const searchInput = document.getElementById("search-note");
 const sideMenuToggler = document.getElementById("side-menu-toggler");
 const sideMenu = document.getElementById("side-menu");
 
+// Get the initial notes from Local Storage if there are notes
 let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
-appHeight();
+// Display notes on first load
 displayNotesList();
 
-// Add Note
+// Add / Show Note
 addBtn.addEventListener("click", () => addNote());
 
 function addNote(id, title = "", text = "") {
@@ -19,6 +20,7 @@ function addNote(id, title = "", text = "") {
 	searchInput.value = "";
 	rightSide.innerHTML = "";
 
+	// render the boilerplate for the note input and text displaying
 	rightSide.innerHTML = `
 		<div class="top-bar top-bar--right">
 				<div class="note-title-sec">
@@ -45,6 +47,7 @@ function addNote(id, title = "", text = "") {
 			</div>
 	`;
 
+	// Caching the needed element for the app functionnality
 	const noteTitleInput = document.getElementById("note-title-input");
 	const noteTitle = document.getElementById("note-title");
 	const doneBtn = document.getElementById("done");
@@ -53,27 +56,33 @@ function addNote(id, title = "", text = "") {
 	const main = document.getElementById("main");
 	const textArea = document.getElementById("textarea");
 
+	// Put focus on note title input when his value is blank
 	if (text === "") noteTitleInput.focus();
 
 	noteTitleInput.value = title;
 	textArea.value = text;
+
+	// Convert textarea value to Markdown
 	main.innerHTML = marked.parse(text);
 
 	let titleVal = title;
 	let textVal = text;
 
+	// Listen and update note title input
 	noteTitleInput.addEventListener("input", (e) => {
 		const val = e.target.value;
 		noteTitle.innerHTML = val;
 		titleVal = val;
 	});
 
+	// Listen and update textarea input
 	textArea.addEventListener("input", (e) => {
 		const term = e.target.value;
 		main.innerHTML = marked.parse(term);
 		textVal = term;
 	});
 
+	// Toggle between input and plain text for editing the values
 	editBtn.addEventListener("click", () => {
 		console.log(titleVal);
 		if (title === "") return;
@@ -84,6 +93,7 @@ function addNote(id, title = "", text = "") {
 		noteTitleInput.classList.toggle("hidden");
 	});
 
+	// Delete note on user's confirmation
 	deleteBtn.addEventListener("click", () => {
 		if (window.confirm("You really want to delete this note ?")) {
 			deleteNote(id);
@@ -91,18 +101,22 @@ function addNote(id, title = "", text = "") {
 	});
 
 	doneBtn.addEventListener("click", () => {
+		// Check if there is at least a title
 		if (titleVal === "") {
 			alert("Please enter at least a Title");
 			return;
 		}
 
+		// Check if note already exist
 		const exist = notes.find((note) => note.id === id);
-
 		if (exist) {
-			//console.log("already exist");
+			// Update the current note with the new values
 			updateNote(id, titleVal, textVal, exist);
+
+			// Toggle between input and plain text
 			reverseTextField(noteTitleInput, noteTitle, main, textArea);
 		} else {
+			// Else create a new note
 			let newID = ID();
 
 			notes = [
@@ -117,8 +131,10 @@ function addNote(id, title = "", text = "") {
 
 			id = newID;
 
+			// Update Local Storage
 			updateLS();
 
+			// Toggle between input and plain text
 			reverseTextField(noteTitleInput, noteTitle, main, textArea);
 		}
 		displayNotesList();
@@ -241,13 +257,14 @@ sideMenuToggler.addEventListener("click", () => {
 });
 
 // Fixing 100vh issue on mobile
+appHeight();
 function appHeight() {
 	const doc = document.documentElement;
 	doc.style.setProperty("--app-height", `${window.innerHeight}px`);
 }
 window.addEventListener("resize", appHeight);
 
-// Update Locale Storage
+// Update Local Storage
 function updateLS() {
 	localStorage.setItem("notes", JSON.stringify(notes));
 }
