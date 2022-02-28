@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+			integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link rel="stylesheet" href="./style.css" />
+		<title>iNOTES APP</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<!-- LEFT SIDE -->
+			<div id="leftside" class="leftside">
+				<!-- Top Left Bar -->
+				<div class="top-bar top-bar">
+					<button id="side-menu-toggler" class="side-menu-toggler btn">
+						<i class="fas fa-bars"></i>
+					</button>
+					<h1 class="logo"><span>i</span>NOTES</h1>
+				</div>
+
+				<!-- Notes listings -->
+				<div id="side-menu" class="side-menu side-menu--active">
+					<div class="notes-manipulation">
+						<input
+							type="text"
+							id="search-note"
+							class="search-note"
+							placeholder="Search note..."
+						/>
+						<button id="add" class="btn add-note">
+							<i class="fas fa-plus"></i> Add note
+						</button>
+					</div>
+
+					<h3 class="notes-heading">All notes</h3>
+
+					<ul id="notes-list" class="notes-list">
+						<!--
+					<li class="notes-list--item">Item 1</li>
+					<li class="notes-list--item">Item 2</li>
+					-->
+					</ul>
+				</div>
+			</div>
+
+			<!-- RIGHT SIDE -->
+			<div id="rightside" class="rightside">
+				<!-- Top Right Bar 
+			<div class="top-bar top-bar--right">
+				<div class="note-title-sec">
+					<input type="text" id="note-title-input" class="note-title-input" placeholder="Enter note title here">
+					<h2 class="note-title hidden">Test de titre</h2>
+				</div>
+
+				<!-- Note tools 
+				<div class="note-tools">
+					<button id="done" class="btn">Done</button>
+					<button id="edit" class="icon-btn"><i class="fas fa-edit"></i></button>
+					<button id="delete" class="icon-btn"><i class="fas fa-trash-alt"></i></button>
+				</div>
+			</div>
+
+			<!-- Note Textfield 
+			<div class="note-textfield">
+				<div id="main" class="main hidden"></div>
+				<textarea id="textarea"></textarea>
+			</div>
+		-->
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
+		<script src="main.js"></script>
+	</body>
+</html>
