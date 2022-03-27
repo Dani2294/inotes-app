@@ -119,13 +119,13 @@ function addNote(id, title = "", text = "") {
 			let newID = ID();
 
 			notes = [
-				...notes,
 				{
 					id: newID,
 					title: titleVal,
 					text: textVal,
 					updated: new Date(),
 				},
+				...notes,
 			];
 
 			id = newID;
@@ -179,14 +179,6 @@ function displayNotesList() {
 		notesList.innerHTML = `<p class="notes-list__item" >No notes to show...</p>`;
 		return;
 	}
-	/* 
-	const updatedNotes = [
-		...notes.sort((a, b) => {
-			return new Date(a.updated) > new Date(b.updated) ? -1 : 1;
-		}),
-	];
-	console.log(updatedNotes);
-     */
 
 	notes.forEach((note) => {
 		const MAX_TEXT_LENGTH = 60;
